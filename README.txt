@@ -2,8 +2,7 @@
 
 ### Cel:
 
-Celem projektu jest predykcja długoterminowych (10-15 lat) zmian średnich temperatur globalnych na podstawie danych o emisjach CO₂ z opóźnieniem czasowym (lag). Model przewiduje przyszłe wartości temperatury na podstawie danych historycznych oraz prognozowanych emisji CO₂.
-
+Celem projektu jest predykcja długoterminowych (10-15 lat) zmian średnich temperatur globalnych na podstawie danych o emisjach CO₂ z opóźnieniem czasowym.
 
 ### Architektura:
 
@@ -15,7 +14,7 @@ Dodatkowe informacje:
 
     Dane wyjściowe: jedna prognozowana wartość temperatury
 
-    Dane CO₂ są przesunięte o 20 lat do przodu względem temperatury, co umożliwia uczenie zależności z opóźnieniem.
+    Dane CO₂ są przesunięte o 20 lat do przodu względem temperatury, co umożliwia uczenie zależności z opóźnieniem i dalsze predykcje temperatur.
 
 ### Dane i źródła:
 
@@ -38,7 +37,7 @@ Dwutlenek węgla (CO₂)
         1958–2025: Pomiary bezpośrednie –
         NOAA ESRL (Mauna Loa Observatory) – "Monthly CO₂ Measurements (Keeling Curve)"
 
-    Zastosowano 20-letnie opóźnienie (lag), by umożliwić przewidywanie przyszłości na podstawie wcześniejszych emisji
+    Zastosowano 20-letnie opóźnienie, by umożliwić przewidywanie przyszłości na podstawie wcześniejszych emisji
 
 ### Wyniki:
 Wytrenowany model osiągnął następujące wyniki:
