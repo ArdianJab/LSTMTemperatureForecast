@@ -13,9 +13,9 @@ from prepare_data import load_and_prepare_data
 
 # --- Ścieżki zapisu ---
 
-save_path_model = "../models/model.keras"
-save_path_scaler_temp = "../models/scaler_temp.pkl"
-save_path_scaler_co2 = "../models/scaler_co2.pkl"
+save_path_model = "model.keras"
+save_path_scaler_temp = "scaler_temp.pkl"
+save_path_scaler_co2 = "scaler_co2.pkl"
 
 # --- Parametry uczenia ---
 
