@@ -61,7 +61,7 @@ Wytrenowany model osiągnął następujące wyniki:
 
 ## Wymagania
 
-- python3.10
+- python 3.10
 - Biblioteki:
   - joblib==1.5.1
   - numpy==1.24.3
@@ -73,15 +73,15 @@ Wytrenowany model osiągnął następujące wyniki:
 
 
 Wszystkie używane biblioteki znajdują się w pliku requirements.txt, który przy pomocy poniższej komendy zainstaluje wymagane biblioteki:
-```bash
+
 pip install -r requirements.txt
-```
+
 ## Instalacja
-```bash
-git clone
-cd twoj-projekt
+
+git clone https://github.com/ArdianJab/LSTMTemperatureForecast
+cd LSTMTemperatureForecast
 pip install -r requirements.txt
-```
+
 
 ## Użycie
 Należy uruchomić:
@@ -118,5 +118,4 @@ Do wizualizacji prognozy służy plot_forecast z forecast.py
 
 ## Licencja
 Ten projekt jest udostępniony na licencji MIT.
-Zobacz plik [LICENSE](LICENSE) po więcej informacji.
 
