@@ -95,6 +95,9 @@ Dane użyte do treningu wzięte z:
 	https://data.giss.nasa.gov/gistemp/tabledata_v4/GLB.Ts+dSST.csv
 	https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt
 
+GISTEMP Team, 2025: GISS Surface Temperature Analysis (GISTEMP), version 4. NASA Goddard Institute for Space Studies. Dataset accessed 2025-06-16 at https://data.giss.nasa.gov/gistemp/
+Lenssen, N., G.A. Schmidt, M. Hendrickson, P. Jacobs, M. Menne, and R. Ruedy, 2024: A GISTEMPv4 observational uncertainty ensemble. J. Geophys. Res. Atmos., 129, no. 17, e2023JD040179, doi:10.1029/2023JD040179
+
 ## Predykcja:
 Do prognozy służy funkcja rolling_forecast_known_co2 z forecast.py
 Do wizualizacji prognozy służy plot_forecast z forecast.py
