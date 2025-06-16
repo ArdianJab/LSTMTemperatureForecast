@@ -103,10 +103,12 @@ Do wizualizacji prognozy służy plot_forecast z forecast.py
 
 /project
 ├── src/                # cały kod
-│   ├── forecast/ 		 # robienie prognozy
-│   └── prepare_data/	 # pobieranie i modyfikowanie danych
-│   └── train_model/	 # trenowanie modelu
-├── models/             # zapisany model i scalery
+├── forecast/ 		# robienie prognozy
+├── prepare_data/	# pobieranie i modyfikowanie danych
+├── train_model/	# trenowanie modelu
+├── model.keras		# zapisany wytrenowany model
+├── scaler_temp.pkl	# zapisany temp scaler
+├── scaler_co2.pkl	# zapisany co2 scaler
 ├── README.md           # plik README
 ├── LICENSE             # plik licencji
 └── requirements.txt    # lista pakietów Python
