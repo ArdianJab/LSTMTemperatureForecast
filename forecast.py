@@ -3,9 +3,9 @@ import joblib
 from tensorflow.keras.models import load_model
 from prepare_data import *
 
-read_path_model = "../models/model.keras"
-read_path_scaler_temp = "../models/scaler_temp.pkl"
-read_path_scaler_co2 = "../models/scaler_co2.pkl"
+read_path_model = "model.keras"
+read_path_scaler_temp = "scaler_temp.pkl"
+read_path_scaler_co2 = "scaler_co2.pkl"
 
 
 def rolling_forecast_known_co2(model, temp, co2, n_steps, scaler_temp, scaler_co2, forecast_months = 0):
