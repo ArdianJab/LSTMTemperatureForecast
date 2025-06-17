@@ -93,6 +93,53 @@ def plot_forecast(temp, forecast, start_date="1880-01"):
     plt.tight_layout()
     plt.show()
 
+def compare_forecast_with_actual(forecast, temp, forecast_start="2010-01"):
+    forecast_start_date = pd.to_datetime(forecast_start)
+    forecast_dates = pd.date_range(start=forecast_start_date, periods=len(forecast), freq="M")
+
+        # Wycięcie fragmentu rzeczywistych danych (jeśli istnieje)
+    temp = temp.copy()
+    temp["Date"] = pd.date_range(start="1880-01", periods=len(temp), freq="M")
+    temp.set_index("Date", inplace=True)
+
+    temp_actual = temp.loc[(temp.index >= forecast_dates[0]) & (temp.index <= forecast_dates[-1])]
+    temp_actual_values = temp_actual["Temp"] if not temp_actual.empty else None
+
+        # CO₂ z przesunięciem 20 lat
+    co2 = get_co2lagged_data(co2_lag_years=20)
+    co2["Date"] = pd.to_datetime(co2["Date"])
+    co2.set_index("Date", inplace=True)
+    co2_range = co2.loc[(co2.index >= forecast_dates[0]) & (co2.index <= forecast_dates[-1])]
+
+        # Rysowanie
+    fig, ax1 = plt.subplots(figsize=(14, 5))
+    ax1.plot(forecast_dates, forecast, label="Forecasted temperature", color="blue")
+
+    if temp_actual_values is not None and not temp_actual_values.empty:
+        ax1.plot(temp_actual_values.index, temp_actual_values.values,
+                 label="Actual temperature", color="black", linestyle="--")
+
+    ax1.set_xlabel("Year")
+    ax1.set_ylabel("Temperature difference\n(12-month mean vs. 1951–1980 avg)")
+    ax1.grid()
+
+        # Druga oś dla CO₂
+    ax2 = ax1.twinx()
+    ax2.plot(co2_range.index, co2_range["CO2"], label="CO₂ concentration from 20 years before", color="red",
+                 linestyle="--", alpha=0.4)
+    ax2.set_ylabel("CO₂ concentration [ppm]", color="red")
+    ax2.tick_params(axis='y', labelcolor='red')
+
+        # Legendy
+    lines1, labels1 = ax1.get_legend_handles_labels()
+    lines2, labels2 = ax2.get_legend_handles_labels()
+    ax1.legend(lines1 + lines2, labels1 + labels2, loc="upper left")
+
+    plt.title(f"Forecast vs actual temperature ({forecast_start}–{forecast_dates[-1].strftime('%Y-%m')})")
+    plt.tight_layout()
+    plt.show()
+
+
 
 temp = get_averaged_temp()
 # temp.drop(temp.tail(12).index,inplace = True) # jeśli chcemy zacząć predykcję wcześniej to usuwamy n ostatnich miesięcy podając n w .tail(n)
@@ -113,3 +160,17 @@ forecast = rolling_forecast_known_co2(
 )
 
 plot_forecast(temp, forecast)
+temp = get_averaged_temp()
+temp.drop(temp.tail(210).index,inplace = True)
+forecast2 = rolling_forecast_known_co2(
+    model=model,
+    temp=temp,
+    co2=co2,
+    n_steps=24, # takie samo jak look_back w train_model
+    scaler_temp=scaler_temp,
+    scaler_co2=scaler_co2,
+    forecast_months=186,
+)
+temp = get_averaged_temp()
+compare_forecast_with_actual(forecast2, temp)
+
