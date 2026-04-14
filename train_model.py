@@ -143,24 +143,3 @@ train_rmse = math.sqrt(mean_squared_error(trainY_inv, trainPredict_inv))
 test_rmse = math.sqrt(mean_squared_error(testY_inv, testPredict_inv))
 print(f"Train RMSE: {train_rmse:.3f}")
 print(f"Test RMSE: {test_rmse:.3f}")
-
-# --- Wykres predykcji ---
-plt.figure(figsize=(12, 6))
-plt.plot(df["Date"], df["Temp"], label="True Temp")
-
-trainPredictPlot = np.full((len(features_scaled),), np.nan)
-trainPredictPlot[look_back:train_idx] = trainPredict_inv.flatten()
-
-testPredictPlot = np.full((len(features_scaled),), np.nan)
-testPredictPlot[val_idx:] = testPredict_inv.flatten()
-
-plt.plot(df["Date"], trainPredictPlot, label="Train Predict")
-plt.plot(df["Date"], testPredictPlot, label="Test Predict")
-
-plt.xlabel("Date")
-plt.ylabel("Temperature difference between\nmean temperature from last 12 months and 1951-1980 average")
-plt.title("LSTM Temperature Prediction with CO2 and Temp features")
-plt.legend()
-plt.grid(True)
-plt.tight_layout()
-plt.show()
